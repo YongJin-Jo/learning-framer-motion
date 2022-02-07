@@ -4,6 +4,7 @@ import { Drag } from './components/Drag';
 import { Gestures } from './components/Gestures';
 import { Variants } from './components/Variants';
 import { Path } from './components/Path';
+import { Presence } from './components/Presence';
 const MainWarrper = styled(motion.div)`
   display: flex;
 `;
@@ -15,6 +16,7 @@ function App() {
       <Gestures />
       <Drag />
       <Path />
+      <Presence />
     </MainWarrper>
   );
 }
