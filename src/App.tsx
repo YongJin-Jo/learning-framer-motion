@@ -1,36 +1,20 @@
 import { motion } from 'framer-motion';
-import React from 'react';
 import styled from 'styled-components';
+import { Drag } from './components/Drag';
+import { Gestures } from './components/Gestures';
+import { Variants } from './components/Variants';
 
-const Warrper = styled.div`
-  width: 100%;
-  height: 100vh;
+const MainWarrper = styled(motion.div)`
   display: flex;
-  justify-content: center;
-  align-items: center;
 `;
-const Box = styled(motion.div)`
-  width: 100px;
-  height: 100px;
-
-  background-color: white;
-`;
-
-const myVaras = {
-  start: { scale: 0 },
-  end: {
-    scale: 1,
-    borderRadius: '20px',
-    rotateZ: 360,
-    transition: { type: 'spring', dely: 0.5 },
-  },
-};
 
 function App() {
   return (
-    <Warrper className="App">
-      <Box variants={myVaras} initial="start" animate="end"></Box>
-    </Warrper>
+    <MainWarrper className="App">
+      <Variants />
+      <Gestures />
+      <Drag />
+    </MainWarrper>
   );
 }
 
