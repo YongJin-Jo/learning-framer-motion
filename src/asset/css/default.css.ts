@@ -16,4 +16,8 @@ const Warrper = styled.div`
   }
 `;
 
-export { Warrper };
+const Flex = styled.div`
+  display: flex;
+`;
+
+export { Warrper, Flex };

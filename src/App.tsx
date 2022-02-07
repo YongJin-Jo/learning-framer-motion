@@ -5,18 +5,26 @@ import { Gestures } from './components/Gestures';
 import { Variants } from './components/Variants';
 import { Path } from './components/Path';
 import { Presence } from './components/Presence';
-const MainWarrper = styled(motion.div)`
+import { Slider } from './components/Slider';
+const MainWarrper = styled.div``;
+const Flex = styled.div`
   display: flex;
 `;
-
 function App() {
   return (
     <MainWarrper className="App">
-      <Variants />
-      <Gestures />
-      <Drag />
-      <Path />
-      <Presence />
+      <Flex>
+        <Variants />
+        <Gestures />
+        <Drag />
+        <Path />
+      </Flex>
+      <Flex>
+        <Presence />
+      </Flex>
+      <Flex>
+        <Slider />
+      </Flex>
     </MainWarrper>
   );
 }
