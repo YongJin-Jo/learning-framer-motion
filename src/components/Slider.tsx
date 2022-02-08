@@ -10,7 +10,9 @@ const Box = styled(motion.div)`
   background-color: rgba(255, 255, 255, 1);
   border-radius: 40px;
   font-size: 28px;
+  top: 100px;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.06);
+  position: absolute;
 `;
 
 const Container = styled.div`
@@ -23,39 +25,59 @@ const Container = styled.div`
   position: relative;
 `;
 
-const BoxVars = {
-  initial: { x: -500, scale: 0.5 },
-  animate: { x: -500, scale: 1 },
-  exit: { x: 500, scale: 0.5 },
+const Vars = {
+  entiry: (changeVars: boolean) => ({
+    x: changeVars ? -500 : 500,
+    opacity: 0,
+    scale: 0,
+  }),
+  visible: {
+    x: 0,
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 1,
+    },
+  },
+  exit: (changeVars: boolean) => ({
+    x: changeVars ? 500 : -500,
+    opacity: 0,
+    scale: 0,
+    transition: { duration: 1 },
+  }),
 };
 
 export const Slider = () => {
   const [slider, setSlider] = useState(1);
-  const onClick = () => {
-    const next = slider + 1;
-    setSlider(next);
+  const [changeVars, setchangeVars] = useState(false);
+  const onNext = () => {
+    setchangeVars(false);
+    setSlider(value => (value === 10 ? 10 : value + 1));
+  };
+  const onPrev = () => {
+    setchangeVars(true);
+    setSlider(value => (value === 1 ? 1 : value - 1));
   };
   return (
     <Warrper>
+      <h1>Slider</h1>
       <Container>
-        <AnimatePresence>
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(i =>
-            i === slider ? (
-              <Box
-                variants={BoxVars}
-                initial="invisible"
-                animate="visible"
-                exit="exit"
-                key={i}
-              >
-                <span>{i}</span>
-              </Box>
-            ) : null
-          )}
+        <AnimatePresence custom={changeVars}>
+          <Box
+            custom={changeVars}
+            variants={Vars}
+            initial="entiry"
+            animate="visible"
+            exit="exit"
+            transition={{ duration: 1 }}
+            key={slider}
+          >
+            <span>{slider}</span>
+          </Box>
         </AnimatePresence>
         <div>
-          <button>prev</button>
-          <button onClick={onClick}>next</button>
+          <button onClick={onPrev}>prev</button>
+          <button onClick={onNext}>next</button>
         </div>
       </Container>
     </Warrper>
