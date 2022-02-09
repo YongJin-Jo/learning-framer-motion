@@ -42,6 +42,7 @@ export const Modal = () => {
 
   return (
     <Warrper>
+      <h1>Modal</h1>
       <Grid>
         {['1', '2', '3', '4'].map(n => (
           <Box onClick={() => setBoxNumber(n)} key={n} layoutId={n} />
